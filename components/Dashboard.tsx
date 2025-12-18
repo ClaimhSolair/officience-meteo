@@ -145,11 +145,13 @@ const Dashboard: React.FC<DashboardProps> = ({ deals, onDealClick }) => {
           setBrief(data);
           setLoadingBrief(false);
           
-          // Only cache if it's a valid successful response (not an error fallback)
-          if (data && data.priorities.length > 0 && !data.priorities[0].includes('quota') && !data.priorities[0].includes('Check internet')) {
+         // Only cache if it's a valid successful response (not an error fallback)
+          if (data && data.priorities.length > 0 && 
+              !data.priorities[0].includes('quota') && 
+              !data.priorities[0].includes('Check internet') &&
+              !data.priorities[0].includes('Configure API Key')) {
               localStorage.setItem(cacheKey, JSON.stringify(data));
           }
-        }
       } else {
         setLoadingBrief(false);
       }
