@@ -19,8 +19,6 @@ export default defineConfig({
     sourcemap: false,
     minify: 'esbuild',
   },
-  define: {
-    // Make environment variables available to the client
-    'process.env.VITE_GEMINI_API_KEY': JSON.stringify(process.env.VITE_GEMINI_API_KEY),
-  },
+  // Note: VITE_* environment variables are automatically available
+  // via import.meta.env.VITE_* - no 'define' block needed!
 });
