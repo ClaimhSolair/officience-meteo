@@ -1,6 +1,5 @@
 import React, { ReactNode, useState, useRef, useEffect } from 'react';
-import { LayoutDashboard, List, Search, CloudLightning, LineChart, Bot, X, Activity, Trophy, ChevronRight, User, Menu, ChevronDown } from 'lucide-react';
-import AIAssistant from './AIAssistant';
+import { LayoutDashboard, List, Search, CloudLightning, LineChart, X, Activity, Trophy, ChevronRight, User, Menu, ChevronDown } from 'lucide-react';
 import { Deal } from '../types';
 
 interface LayoutProps {
@@ -25,7 +24,6 @@ const Layout: React.FC<LayoutProps> = ({
   deals,
   onDealClick
 }) => {
-  const [showAssistant, setShowAssistant] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
@@ -184,14 +182,6 @@ const Layout: React.FC<LayoutProps> = ({
                 </div>
               )}
             </div>
-            
-            <button 
-              onClick={() => setShowAssistant(true)}
-              className="hidden md:flex items-center gap-2 px-4 py-2 bg-gold-500 hover:bg-gold-400 text-black text-xs font-bold rounded-lg transition-colors shadow-[0_0_15px_rgba(234,179,8,0.3)]"
-            >
-              <Bot size={16} />
-              <span>ASK OTTY</span>
-            </button>
           </div>
 
           {/* MOBILE DROPDOWN MENU */}
@@ -236,30 +226,6 @@ const Layout: React.FC<LayoutProps> = ({
           {children}
         </main>
       </div>
-
-      {/* Mobile FAB */}
-      <button 
-        onClick={() => setShowAssistant(true)}
-        className="md:hidden fixed bottom-6 right-6 z-40 h-14 w-14 bg-gold-500 rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(234,179,8,0.4)] active:scale-95 transition-transform"
-      >
-         <Bot size={28} className="text-black" />
-      </button>
-
-      {/* Otty Popup Panel */}
-      {showAssistant && (
-         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-0 md:items-end md:justify-end md:inset-auto md:bottom-24 md:right-8 animate-in fade-in duration-200">
-            <div className="w-full md:w-[450px] h-[75vh] md:h-[650px] bg-card rounded-2xl shadow-2xl border border-border flex flex-col relative overflow-hidden">
-               <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent opacity-50"></div>
-               <button 
-                  onClick={() => setShowAssistant(false)}
-                  className="absolute top-4 right-4 z-20 p-2 bg-app/50 backdrop-blur rounded-lg text-secondary hover:text-white border border-border"
-               >
-                  <X size={16} />
-               </button>
-               <AIAssistant deals={deals} />
-            </div>
-         </div>
-      )}
 
     </div>
   );
